@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>save方法和restore方法的使用</title>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+</body>
+<script>
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext('2d');
+    context.lineWidth=5;//设置笔触宽度
+    context.strokeStyle='red';//设置线条颜色为红色
+    //画第一条直线
+    context.beginPath();
+    context.moveTo(0,0);
+    context.lineTo(100,0);
+    context.closePath();
+    context.stroke();
+    //再画第二条直线
+    context.strokeStyle='blue';
+    context.beginPath();
+    context.moveTo(200,0);
+    context.lineTo(300,0);
+    context.closePath();
+    context.stroke();
+
+    function drawGrid(strokeStyle,fillStyle) {
+        context.save();//保存这个绘图环境状态到栈中
+
+        context.fillStyle=fillStyle;
+        context.strokeStyle=strokeStyle;
+
+        //画网格...(代码省略)
+
+        context.restore();//从之前的状态从栈中释放
+    }
+</script>
+</html>
