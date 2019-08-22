@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Canvas时钟</title>
+    <title>Canvas时钟+转化img标签'</title>
 </head>
 <body>
+<div id='controls'>
+    <input id='snapshotButton' type='button' value='Take snapshot'/>
+    <p>点击按钮，canvas和img的相互转化，通过右键查看不同效果</p>
+</div>
+
+<img id='snapshotImageElement'/>
 <canvas id="canvas" height="400" width="400">Canvas不支持。</canvas>
 </body>
 <script>
@@ -23,7 +29,11 @@
         //数字空隙
         NUMERAL_SPACING = 20,
         //指针的全长度
-        HAND_RADUIS = RADIUS + NUMERAL_SPACING;
+        HAND_RADUIS = RADIUS + NUMERAL_SPACING,
+
+        snapshotButton = document.getElementById('snapshotButton'),
+        snapshotImageElement = document.getElementById('snapshotImageElement'),
+        loop;
 
 
     //方法……
@@ -88,7 +98,6 @@
     function drawHands() {
         var date = new Date,
             hour = date.getHours();
-
         //24小时制转化为12小时制
         hour = hour > 12 ? hour - 12 : hour;
 
@@ -110,6 +119,28 @@
         drawHands();
         drawNumerals();
     }
+
+
+
+    snapshotButton.onclick = function (e) {
+        var dataUrl;
+
+        if (snapshotButton.value === 'Take snapshot') {
+            dataUrl = canvas.toDataURL();
+            clearInterval(loop);
+            snapshotImageElement.src = dataUrl;
+            snapshotImageElement.style.display = 'inline';
+            canvas.style.display = 'none';
+            snapshotButton.value = 'Return to Canvas';
+        }
+        else {
+            snapshotButton.value = 'Take snapshot';
+            canvas.style.display = 'inline';
+            snapshotImageElement.style.display = 'none';
+            loop = setInterval(drawClock, 1000);
+        }
+    };
+
 
     //Initialization------初始化
     context.font = FONT_HEIGHT + 'px Arial';
