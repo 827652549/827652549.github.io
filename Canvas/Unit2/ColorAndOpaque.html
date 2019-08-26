@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>矩形的绘制</title>
+    <title>颜色与不透明度</title>
 </head>
 <body>
-<canvas id="canvas" width="700" height="500"></canvas>
+<canvas id="canvas" width="700" height="500" style="border: thin solid black"></canvas>
 </body>
 <script>
     var canvas = document.getElementById('canvas'),
@@ -15,7 +15,10 @@
     context.lineWidth = 30;
 
     context.font = '24px Helvetica';
-    context.fillText('点击任何处以擦除', 175, 40);
+    context.fillText('点击任何处以擦除', 175, 200);
+
+    context.strokeStyle = 'goldenrod';
+    context.fillStyle = 'rgba(0,0,255,0.5)';
 
     context.strokeRect(75, 100, 200, 200);
     context.fillRect(325, 100, 200, 200);
