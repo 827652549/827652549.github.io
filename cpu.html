@@ -1,0 +1,17 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+<div id="div"></div>
+<script>
+    window.onload = () => {
+        let cpu = navigator.hardwareConcurrency;
+        console.log(cpu);
+        document.getElementById('div').innerHTML = cpu;
+    }
+</script>
+</body>
+</html>
