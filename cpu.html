@@ -9,8 +9,9 @@
 <script>
     window.onload = () => {
         let cpu = navigator.hardwareConcurrency;
+        let ua = navigator.userAgent
         console.log(cpu);
-        document.getElementById('div').innerHTML = cpu;
+        document.getElementById('div').innerHTML ='cpu core:'+ cpu + '|'+ ua;
     }
 </script>
 </body>
